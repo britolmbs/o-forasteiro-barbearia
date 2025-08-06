@@ -15,6 +15,10 @@
     // "types": ["node"],
     // and npm install -D @types/node
 
+    "typeRoots": [
+      "./src/@types"
+    ],
+
     // Other Outputs
     "sourceMap": true,
     "declaration": true,

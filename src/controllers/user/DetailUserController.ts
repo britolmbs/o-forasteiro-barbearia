@@ -8,7 +8,7 @@ class DetailUserController{
 
         const userDetailService = new UserDetailService();
 
-        const datailUser = await userDetailService.execute();
+        const datailUser = await userDetailService.execute(user_id);
 
         return response.json(datailUser);
 

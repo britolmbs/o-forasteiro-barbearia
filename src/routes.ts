@@ -5,6 +5,7 @@ import { DetailUserController } from './controllers/user/DetailUserController';
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import { UpdateUserController } from './controllers/user/UpdateUserController';
 import { CreateHaircutController } from './controllers/haircut/CreateHaircutController';
+import { ListhaircutController } from './controllers/haircut/ListHaircutController';
 
 const router = Router();
 
@@ -14,5 +15,6 @@ router.get('/me', isAuthenticated, new DetailUserController().handle)
 router.put('/users', isAuthenticated, new UpdateUserController().handle)
 
 router.post('/haircut', isAuthenticated, new CreateHaircutController().handle)
+router.get('/haircuts', isAuthenticated, new ListhaircutController().handle)
 
 export {router};

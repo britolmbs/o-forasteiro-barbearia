@@ -8,7 +8,7 @@ export default function Home(){
             <title>O Forasteiro Barbearia - Seu Sistema Completo</title>
         </Head>
         <Flex background="barber.900" height="100vh" alignItems='center' justifyContent='center'>
-        <Text fontSize={30}>O Forasteiro</Text>
+        <Text fontSize={30} color='barber.200'>O Forasteiro</Text>
         </Flex>
         </>
     )

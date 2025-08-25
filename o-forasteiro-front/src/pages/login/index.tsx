@@ -9,15 +9,16 @@ export default function Login() {
   return(
     <>
     <Head>
-        <title>O Forasteiro - Faça login para acessar</title>
+        <title>O Forasteiro Barbearia - Faça login para acessar</title>
     </Head>
-    <Flex background='barber.900' height='100vh' alignItems='center' justifyContent='center'>
+    <Flex background='barber.900' color='barber.200' height='100vh' alignItems='center' justifyContent='center'>
       <Flex width={640} direction='column' p={14} rounded={8}>
         <Center p={4}>
              <Image
             src={logoImg}
             alt="Logo"
-            quality={100} 
+            quality={100}
+            width={240}
             />
         </Center>
         <Input
@@ -47,7 +48,7 @@ export default function Login() {
           Acessar
          </Button>
 
-         <Center mt={3}>
+         <Center mt={2}>
           <Link href='/register'>
           <Text cursor='pointer'>
           Ainda não possui conta? <strong>Cadastre-se</strong>

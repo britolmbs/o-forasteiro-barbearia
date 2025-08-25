@@ -8,7 +8,8 @@ const system = createSystem(defaultConfig, {
         barber: {
           900: { value: '#12131b' },
           400: { value: '#1b1c29' },
-          100: { value: '#c6c6c6' }
+          100: { value: '#c6c6c6' },
+          200: {value: '#FFF'}
         },
         button: {
           cta: { value: '#fba931' },

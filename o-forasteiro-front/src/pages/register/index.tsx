@@ -3,9 +3,17 @@ import Head from "next/head"
 import Image from "next/image"
 import logoImg from '../../../public/images/logo.svg'
 import Link from "next/link"
+import { useState } from "react"
 
 
 export default function Register(){
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    function handleRegister(){
+        console.log(name, email, password);
+    }
     return(
         <>
         <Head>
@@ -32,7 +40,9 @@ export default function Register(){
                 type="text"
                 mb={3}
                 color='barber.200'
-                                 />
+                value={name}
+                onChange={ (e) => setName(e.target.value) }
+                 />
                 <Input
                 background='barber.400'
                 variant='outline'
@@ -41,6 +51,8 @@ export default function Register(){
                 type="email"
                 mb={3}
                 color='barber.200'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 />
                 <Input
                 background='barber.400'
@@ -50,6 +62,8 @@ export default function Register(){
                 type="password"
                 mb={3}
                 color='barber.200'
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 />
 
                 <Button
@@ -58,6 +72,7 @@ export default function Register(){
                 color='gray.900'
                 size='lg'
                 _hover={{bg: '#ffb13e'}}
+                onClick={handleRegister}
                 >
                     Crie seu Registro
                 </Button>

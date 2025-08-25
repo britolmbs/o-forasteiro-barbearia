@@ -3,9 +3,17 @@ import { Center, Flex, Input, Button, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import logoImg from '../../../public/images/logo.svg'
 import Link from "next/link";
+import { useState } from "react";
+
 
 
 export default function Login() {
+  const [email , setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  function handleLogin(){
+    console.log(email, password)
+  }
   return(
     <>
     <Head>
@@ -28,6 +36,8 @@ export default function Login() {
           placeholder="Digite seu Email"
           type="email"
           mb={3}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
          /> 
 
          <Input
@@ -37,6 +47,8 @@ export default function Login() {
          placeholder="Digite sua Senha"
          type="password"
          mb={6}
+         value={password}
+         onChange={(e) => setPassword(e.target.value)}
          />
          <Button
          background="button.cta"
@@ -44,6 +56,7 @@ export default function Login() {
          color='gray.900'
          size='lg'
          _hover={{bg: '#ffb13e'}}
+         onClick={handleLogin}
          >
           Acessar
          </Button>

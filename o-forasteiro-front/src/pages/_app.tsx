@@ -1,5 +1,6 @@
 import type { AppProps } from "next/app"
 import { ChakraProvider, createSystem, defaultConfig } from "@chakra-ui/react"
+import { AuthProvider } from "../context/AuthContext"
 
 const system = createSystem(defaultConfig, {
   theme: {
@@ -28,7 +29,9 @@ const system = createSystem(defaultConfig, {
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider value={system}>
+      <AuthProvider>
       <Component {...pageProps} />
+      </AuthProvider>
     </ChakraProvider>
   )
 }

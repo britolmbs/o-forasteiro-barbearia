@@ -25,12 +25,12 @@ children: ReactNode;
 export const AuthContext = createContext({} as AuthContextData)
 
 export function AuthProvider({ children }: AuthProviderProps){
-    const [user, setUser] = useState<UserProps>()
+    const [user, setUser] = useState<UserProps | null>(null);
     const isAuthenticated = !!user;
     
    return(
     <AuthContext.Provider value={{ user, isAuthenticated }}>
-    {children}
+      {children}
     </AuthContext.Provider>
    )
 }

@@ -7,6 +7,8 @@ interface AuthContextData {
     user: UserProps;
     isAuthenticated: boolean;
     signIn: (credentials: SignInProps) => Promise<void>;
+    signUp:  (credentials: SignUpProps) => Promise<void>;
+    logoutUser: () => Promise<void>;
 }
 
 interface UserProps {
@@ -29,6 +31,12 @@ children: ReactNode;
 interface SignInProps {
     email: string;
     password: string
+}
+
+interface SignUpProps {
+    name: string;
+    email: string;
+    password: string;
 }
 
 export const AuthContext = createContext({} as AuthContextData)
@@ -74,9 +82,40 @@ export function AuthProvider({ children }: AuthProviderProps){
         console.log("Erro ao Entrar", err)
        }
     }
+
+    async function signUp({name, email, password}: SignUpProps){
+        try {
+            const response = await api.post('/users', {
+                name,
+                email,
+                password
+            })
+            
+            Router.push('/login')
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    async function logoutUser(){
+        try {
+            destroyCookie(null, '@barber.token', {path: '/'})
+            setUser(null);
+            Router.push('/login')
+
+        } catch (err) {
+            console.log('Erro ao Sair', err)
+        }
+    }
     
    return(
-    <AuthContext.Provider value={{ user, isAuthenticated, signIn }}>
+    <AuthContext.Provider value={{
+         user,
+          isAuthenticated, 
+          signIn,
+          signUp,
+          logoutUser
+          }}>
       {children}
     </AuthContext.Provider>
    )

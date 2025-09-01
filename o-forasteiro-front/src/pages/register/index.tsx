@@ -3,16 +3,28 @@ import Head from "next/head"
 import Image from "next/image"
 import logoImg from '../../../public/images/logo.svg'
 import Link from "next/link"
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { AuthContext } from "../../context/AuthContext"
 
 
 export default function Register(){
+
+    const {signUp} = useContext(AuthContext);
+
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    function handleRegister(){
-        console.log(name, email, password);
+     async function handleRegister(){
+       if(name === '' && email === '' && password === ''){
+        return;
+       }
+
+       await signUp({
+        name,
+        email,
+        password
+       })
     }
     return(
         <>

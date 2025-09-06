@@ -1,5 +1,5 @@
 import { ReactNode} from 'react'
-import { Box, BoxProps, CloseButton, Flex, Text, useColorModelValue } from '@chakra-ui/react'
+import { Box, BoxProps, CloseButton, Flex, FlexProps, Icon, Text, useColorModelValue, useDisclosure } from '@chakra-ui/react'
 import { FiClipboard, FiScissors, FiSettings } from 'react-icons/fi'
 import {IconType} from 'react-icons'
 import Link from 'next/link' 
@@ -17,9 +17,13 @@ const LinkItems : Array<LinkItemProps> = [
 ]
 
 export function Siderbar (){
+    const {open , onOpen, onClose} = useDisclosure();
     return(
         <Box minH='100vh' bg="barber.900" color='barber.200' >
-
+            <SiderbarContent 
+            onClose={()=> onClose}
+            display={{base: 'none', md: 'block'}}
+            />
         </Box>
     )
 }
@@ -47,14 +51,47 @@ return (
             </Link>
             <CloseButton display={{base: 'flex', md: 'none' }} onClick={onClose}/>
         </Flex>
-        {LinkItems.map(link) => (
-
-        )}
+        {LinkItems.map(link => (
+            <NavItem icon={link.icon} route={link.route} key={link.name}>
+                {link.name}
+            </NavItem> 
+        ))}
 
     </Box>
 )
 }
 
-const NavItem = () => {
-    
+interface NavItemProps extends FlexProps {
+    icon: IconType;
+    children: ReactNode;
+    route: string;
 }
+
+const NavItem = ({icon, children, route, ...rest}: NavItemProps) => {
+    return(
+    <Link href={route} style={{ textDecoration: 'none' }}>
+        <Flex
+        align='center'
+        p='4'
+        mx='4'
+        borderRadius='lg'
+        role='group'
+        cursor='pointer'
+        _hover={{
+            bg: 'barber.900',
+            color: 'white'
+        }}
+        {...rest}
+        >
+            {icon && (
+                <Icon
+                mr={4}
+                fontSize='16'
+                as={icon}
+                _groupHover={{ color: 'white'}}
+                />
+            )}
+            {children}
+     </Flex>
+    </Link>
+)}

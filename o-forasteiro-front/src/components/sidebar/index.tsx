@@ -1,5 +1,5 @@
 import { ReactNode} from 'react'
-import { Box, BoxProps, CloseButton, Flex, FlexProps, Icon, Text, useColorModelValue, useDisclosure } from '@chakra-ui/react'
+import { Box, BoxProps, CloseButton, Drawer, DrawerContent, Flex, FlexProps, Icon, Text, useDisclosure } from '@chakra-ui/react'
 import { FiClipboard, FiScissors, FiSettings } from 'react-icons/fi'
 import {IconType} from 'react-icons'
 import Link from 'next/link' 
@@ -17,16 +17,30 @@ const LinkItems : Array<LinkItemProps> = [
 ]
 
 export function Siderbar ({children}: {children: ReactNode }){
-    const {open , onOpen, onClose} = useDisclosure();
+    const {isOpen , onOpen, onClose} = useDisclosure();
     return(
         <Box minH='100vh' bg="barber.900" color='barber.200' >
             <SiderbarContent 
             onClose={()=> onClose}
             display={{base: 'none', md: 'block'}}
             />
-            <Box>
+
+            <Drawer.Root 
+            isOpen={isOpen}
+            placement='start'
+            returnFocusOnClose={onClose}
+            size="full"
+            onClose={onClose}
+            >
+                <DrawerContent>
+                    <SiderbarContent onClose={() => onClose} />
+                </DrawerContent>
+                 </Drawer.Root>
+              <Box>
                 {children}
             </Box>
+           
+
         </Box>
     )
 }
@@ -39,7 +53,7 @@ return (
     <Box
     bg='barber.400'
     borderRight='1px'
-    borderRightColor={useColorModelValue('gray.200', 'gray.700')}
+    //borderRightColor={useColorModelValue('gray.200', 'gray.700')}
     w={{base: 'full', md: 60}}
     pos='fixed'
     h='full'
@@ -49,7 +63,7 @@ return (
             <Link href='/dashboard'>
             <Flex cursor='pointer' userSelect='none' flexDirection='row'>
                 <Text fontSize='2xl' fontFamily='monospace' fontWeight='bold'>Barbearia - </Text>
-                <Text fontSize='2xl' fontFamily='monospace' fontWeight='bold'>O Forasteiro</Text>
+                <Text fontSize='2xl' fontFamily='monospace' fontWeight='bold' color='button.cta'>O Forasteiro</Text>
             </Flex>
             </Link>
             <CloseButton display={{base: 'flex', md: 'none' }} onClick={onClose}/>
@@ -98,3 +112,17 @@ const NavItem = ({icon, children, route, ...rest}: NavItemProps) => {
      </Flex>
     </Link>
 )}
+
+interface MobileProps extends FlexProps {
+    onOpen: () => void;
+}
+
+const MobileNav = ({ onOpen }: MobileProps) => {
+    return (
+        <Flex
+        ml={{base: 0, md: 6}}
+        >
+
+        </Flex>
+    )
+}

@@ -16,7 +16,7 @@ const LinkItems : Array<LinkItemProps> = [
     { name: 'Minha Conta', icon: FiSettings, route: '/profile' },
 ]
 
-export function Siderbar (){
+export function Siderbar ({children}: {children: ReactNode }){
     const {open , onOpen, onClose} = useDisclosure();
     return(
         <Box minH='100vh' bg="barber.900" color='barber.200' >
@@ -24,6 +24,9 @@ export function Siderbar (){
             onClose={()=> onClose}
             display={{base: 'none', md: 'block'}}
             />
+            <Box>
+                {children}
+            </Box>
         </Box>
     )
 }

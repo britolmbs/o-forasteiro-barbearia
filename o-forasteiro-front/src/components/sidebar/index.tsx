@@ -1,6 +1,6 @@
 import { ReactNode} from 'react'
-import { Box, BoxProps, CloseButton, Drawer, DrawerContent, Flex, FlexProps, Icon, Text, useDisclosure } from '@chakra-ui/react'
-import { FiClipboard, FiScissors, FiSettings } from 'react-icons/fi'
+import { Box, BoxProps, CloseButton, Drawer, DrawerContent, Flex, FlexProps, Icon, IconButton, Text, useDisclosure } from '@chakra-ui/react'
+import { FiClipboard, FiMenu, FiScissors, FiSettings } from 'react-icons/fi'
 import {IconType} from 'react-icons'
 import Link from 'next/link' 
 
@@ -36,6 +36,7 @@ export function Siderbar ({children}: {children: ReactNode }){
                     <SiderbarContent onClose={() => onClose} />
                 </DrawerContent>
                  </Drawer.Root>
+                 <MobileNav display={{base: 'flex', md= 'none'}} onOpen={onOpen} />
               <Box>
                 {children}
             </Box>
@@ -53,6 +54,7 @@ return (
     <Box
     bg='barber.400'
     borderRight='1px'
+    bgGradient="to-r" gradientFrom="gray.200" gradientTo="gray.700"
     //borderRightColor={useColorModelValue('gray.200', 'gray.700')}
     w={{base: 'full', md: 60}}
     pos='fixed'
@@ -117,11 +119,25 @@ interface MobileProps extends FlexProps {
     onOpen: () => void;
 }
 
-const MobileNav = ({ onOpen }: MobileProps) => {
+const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
     return (
         <Flex
         ml={{base: 0, md: 6}}
+        px={{base: 4, md: 24}}
+        height='20'
+        alignItems='center'
+        bgGradient="to-r" gradientFrom="white" gradientTo="gray.900"
+        borderBottomRadius='1px'
+        borderBottomColor={'gray.200'}
+        justifyContent='flex-start'
+        {...rest}
         >
+            <IconButton
+            variant='outline'
+            onClick={onOpen}
+            aria-label='open menu'
+           // _icon={<FiMenu />}
+            />
 
         </Flex>
     )

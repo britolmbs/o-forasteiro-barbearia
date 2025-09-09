@@ -33,11 +33,11 @@ export function Siderbar ({children}: {children: ReactNode }){
             onClose={onClose}
             >
                 <DrawerContent>
-                    <SiderbarContent onClose={() => onClose} />
+                    <SiderbarContent onClose={() => onClose()} />
                 </DrawerContent>
                  </Drawer.Root>
-                 <MobileNav display={{base: 'flex', md= 'none'}} onOpen={onOpen} />
-              <Box>
+                 <MobileNav display={{base: 'flex', md: 'none'}} onOpen={onOpen} />
+              <Box ml={{base: 0, md: 60}} p={4}>
                 {children}
             </Box>
            
@@ -136,8 +136,12 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
             variant='outline'
             onClick={onOpen}
             aria-label='open menu'
-           // _icon={<FiMenu />}
+          // _icon={<FiMenu />}
             />
+            <Flex flexDirection='row'>
+                <Text ml={8} fontSize='2xl' fontFamily='monospace' fontWeight="bold">Barbearia - </Text>
+                <Text fontSize='2xl' fontFamily='monospace' fontWeight='bold' color='button.cta'> O Forasteiro</Text>
+            </Flex>
 
         </Flex>
     )

@@ -3,10 +3,14 @@ import { canSSRAuth } from "@/utils/canSSRAuth";
 import { Box, Button, Flex, Heading, Input, Text } from "@chakra-ui/react";
 import Head from "next/head";
 import Link from "next/link";
+import { useContext } from "react";
+import { AuthContext } from "@/context/AuthContext";
 
 export default function Profile(){
+    const {logoutUser} = useContext(AuthContext);
+    
     async function handleLogout() {
-        alert()
+        await logoutUser();
     }
 
     return(

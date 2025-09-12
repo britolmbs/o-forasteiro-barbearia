@@ -1,9 +1,14 @@
 import { Siderbar } from "@/components/sidebar";
+import { canSSRAuth } from "@/utils/canSSRAuth";
 import { Box, Button, Flex, Heading, Input, Text } from "@chakra-ui/react";
 import Head from "next/head";
 import Link from "next/link";
 
 export default function Profile(){
+    async function handleLogout() {
+        alert()
+    }
+
     return(
         <>
         <Head>
@@ -47,7 +52,7 @@ export default function Profile(){
                     <Button w='100%' mt={3} mb={4} bg='button.cta' size='lg' _hover={{bg: '#ffb13e'}}>
                         Salvar
                     </Button>
-                    <Button w='100%' mb={6} bg='transparent' borderWidth={2} borderColor='red.500' color='red.500' size='lg' _hover={{bg: 'transparent'}} > Sair da Conta</Button>
+                    <Button w='100%' mb={6} bg='transparent' borderWidth={2} borderColor='red.500' color='red.500' size='lg' _hover={{bg: 'transparent'}} onClick={handleLogout} > Sair da Conta</Button>
                 </Flex>
                 </Flex>
             </Flex>
@@ -55,3 +60,9 @@ export default function Profile(){
         </>
     )
 }
+
+export const getServerSideProps = canSSRAuth(async (ctx) =>{
+    return {
+        props:{}
+    }
+})
